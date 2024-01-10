@@ -8,6 +8,14 @@ It's focus is on innovative onchain art, that can take the form of runtime art, 
 By putting the artist first, The Function operates at the intersection
 between art and technology with the idea of empowering creativity.
 
+## The jargon can be confusing
+
+- Inscription/Ordinal - an NFT
+-  Inscribe - minting
+-  Sats - short for Satoshis, the smallest element of a Bitcopin block. Each Sat can hold an NFT (or a number of NFTs stacked ontop of eachother in layers)
+-  Inscription Number - each new sat inscribed is given a sequential number, starting from 0.
+-  Hash/seed/inscription ID - the blockchain address of your NFT - 64 characters followed by i0. Here's Casey's inscription 0: '6fb976ab49dcec017f1e201e84395983204ae1a7c2abf7ced0a85d692e442799i0'. If you wan to directly view the content of any inscription simply add 'https://ordinals.com/content/' in front of the ID, eg: [https://ordinals.com/content/6fb976ab49dcec017f1e201e84395983204ae1a7c2abf7ced0a85d692e442799i0]
+
 ## General Pointers
 - Size matters! Your filesize should be below 20k, preferably below 12k.
 - Keep your html file as empty as possible. Through the magic of recursion, this keeps the collector inscription fees to a minimum.
@@ -41,6 +49,29 @@ Out of the box, this gives you:
 - boilerplace css inserted into your html file to center your canvas
 - a second "seeded random function" - that determines it's values directly from the hashed seed
 - Global helper variables: M = Math, W = Window, D = Document
+
+The CSS injected is this:
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: courier;
+  }
+
+  canvas {
+    display: block;
+  }
+
+  Simply add your own styles on top of these to override anything you don't want or to add other styles. 
 
 ## Random
 
