@@ -17,7 +17,7 @@ between art and technology with the idea of empowering creativity.
 With recursion you can reference any file stored on Bitcoin, simple by referencing /content/<inscriptionId>
 And this is how we pull in p5 and the random seed generator.
 
-For a quick start see the boilerplace html file [here]
+For a quick start see the boilerplace html file [[here](https://github.com/function-gallery/function-template/blob/main/index.html)]
 
 ## Onchain p5.js
 To get started with p5, include the onchain library p5.js in your html file, just lije you would include any other script. 
