@@ -83,6 +83,10 @@ Endpoints allow you to pull data directly from the chain. The recursive endpoint
 /r/sat/<SAT_NUMBER>/<PAGE>: the set of 100 inscription ids on <PAGE>.
 /r/sat/<SAT_NUMBER>/at/<INDEX>: the inscription id at <INDEX> of all inscriptions on a sat.
 
+## Three.js
+
+A simple boilerplace created by the wizard himself: https://twitter.com/lifofifo
+
 
 ##
 Have fun. Can't wait to see what you make!
