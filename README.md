@@ -30,7 +30,8 @@ For a quick start see the boilerplace html file [[here](https://github.com/funct
 ## Onchain p5.js
 To get started with p5, include the onchain library p5.js in your html file, just lije you would include any other script. 
 
-`<script src="https://ordinals.com/content/aacb3ced0a4729740b3bcd7bc787f7d3eb8da7b8d95d6797d8400dc75ec1222ci0"></script>`
+`<script src="https://ordinals.com/content/303f35721fdc683c2b4d3c505bbcb9144988b20f0af3fe38c8a651dc24cae2f6i0"></script>`
+
 
 ***The biggest gotcha is remembering to remove the implicit link of "https://ordinals.com" and make it relative /content/xxxx before you inscribe***
 
