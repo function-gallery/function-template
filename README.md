@@ -72,16 +72,16 @@ To include attributes and rarities in your project, simply add this function:
 ## Ordinal endpoints
 
 Endpoints allow you to pull data directly from the chain. The recursive endpoints are:
-/r/blockhash/<HEIGHT>: block hash at given block height.
-/r/blockhash: latest block hash.
-/r/blockheight: latest block height.
-/r/blocktime: UNIX time stamp of latest block.
-/r/children/<INSCRIPTION_ID>: the first 100 child inscription ids.
-/r/children/<INSCRIPTION_ID>/<PAGE>: the set of 100 child inscription ids on <PAGE>.
-/r/metadata/<INSCRIPTION_ID>: JSON string containing the hex-encoded CBOR metadata.
-/r/sat/<SAT_NUMBER>: the first 100 inscription ids on a sat.
-/r/sat/<SAT_NUMBER>/<PAGE>: the set of 100 inscription ids on <PAGE>.
-/r/sat/<SAT_NUMBER>/at/<INDEX>: the inscription id at <INDEX> of all inscriptions on a sat.
+- /r/blockhash/<HEIGHT>: block hash at given block height.
+- /r/blockhash: latest block hash.
+- /r/blockheight: latest block height.
+- /r/blocktime: UNIX time stamp of latest block.
+- /r/children/<INSCRIPTION_ID>: the first 100 child inscription ids.
+- /r/children/<INSCRIPTION_ID>/<PAGE>: the set of 100 child inscription ids on <PAGE>.
+- /r/metadata/<INSCRIPTION_ID>: JSON string containing the hex-encoded CBOR metadata.
+- /r/sat/<SAT_NUMBER>: the first 100 inscription ids on a sat.
+- /r/sat/<SAT_NUMBER>/<PAGE>: the set of 100 inscription ids on <PAGE>.
+- /r/sat/<SAT_NUMBER>/at/<INDEX>: the inscription id at <INDEX> of all inscriptions on a sat.
 
 ## Three.js
 
