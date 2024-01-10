@@ -86,7 +86,7 @@ Endpoints allow you to pull data directly from the chain. The recursive endpoint
 ## Three.js
 
 A simple boilerplace created by the wizard himself: https://twitter.com/lifofifo
-
+[https://github.com/function-gallery/function-template/blob/main/threejs_boilerplate.html]
 
 ##
 Have fun. Can't wait to see what you make!
