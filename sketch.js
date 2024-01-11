@@ -4,11 +4,15 @@
 /* M = Math, W = Window, D = Document */
 
 function setup(){
-  
+  createCanvas(windowWidth, windowHeight)
+  noStroke()
 }
 
-function draw(){
-
+window.draw = function(){
+  background(220, .1)
+  fill(255, 0, 0)
+  ellipse(RI(0, width), RI(0, height), 20, 20)
+  console.log(FN.N(0, 1));
 }
 
 window.$functionAttribute = {
