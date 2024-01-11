@@ -8,7 +8,7 @@ function setup(){
   noStroke()
 }
 
-window.draw = function(){
+function draw(){
   background(220, .1)
   fill(255, 0, 0)
   ellipse(RI(0, width), RI(0, height), 20, 20)
