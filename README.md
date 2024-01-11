@@ -46,7 +46,7 @@ In order to have a determinstic seed (bascially a PRNG random function) you need
 
 Out of the box, this gives you:
 - a deterministic random function
-- your inscription ID
+- global variable 'seed' - your inscription ID 
 - boilerplace css inserted into your html file to center your canvas
 - a second "seeded random function" - that determines it's values directly from the hashed seed
 - Global helper variables: M = Math, W = Window, D = Document
