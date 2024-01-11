@@ -38,7 +38,7 @@ To get started with p5, include the onchain library p5.js in your html file, jus
 - Soon we will have a tool to auto check your files so you don't make this mistake before you inscribe
 - You don't need to use P5, if you're using webGL you can simply skip this
 
-## Random, seeds and CSS 
+## Seeds and CSS 
 In order to have a determinstic seed (bascially a PRNG random function) you need to include the following script in your hrml file. 
 
 <script src="https://ordinals.com/content/468ed32abc461867eb94aed96b4cf785bae8704845b00a982607d8f98245d7f6i0"></script>
@@ -84,11 +84,11 @@ There's a few ways to use the random,
 
 - Use RI(min, max) to generated a random Intiger between min and max
 
-- Use the random class R
-  R.D()       :Random Decimal:   output in range 0-1
-  R.N(a,b)    :Random Number:    output a float number in the range a to b 
-  R.I(a,b)    :Random Intiger:   output a whole number in the range a to b 
-  R.B(b)      :Random Boolean:   chance of returning true, where b is a percentage in range 0 to 1
+- Use the random class FN
+  FN.D()       :Random Decimal:   output in range 0-1
+  FN.N(a,b)    :Random Number:    output a float number in the range a to b 
+  FN.I(a,b)    :Random Intiger:   output a whole number in the range a to b 
+  FN.B(b)      :Random Boolean:   chance of returning true, where b is a percentage in range 0 to 1
 
 - Use seedhash S(n, min, max) - generates an intiger tightly based on the seed, where n can be any number, and the output is an initiger between min and max
 
