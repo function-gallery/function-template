@@ -1,0 +1,213 @@
+let M = Math, D = document, W = window, RO = M.round
+let seed = W.location.pathname.split('/')[2]
+let static = new URLSearchParams(W.location.search).get('static')
+let I1 = '6fb976ab49dcec017f1e201e84395983204ae1a7c2abf7ced0a85d692e442799i0'
+let blockHash = ""
+
+const style = D.head.appendChild(document.createElement('style'))
+
+style.textContent = `
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: courier;
+  }
+
+  canvas {
+    display: block;
+  }
+
+`;
+
+
+
+if (static !== null) {
+  seed = I1.substring(0, 2) + static + I1.substring(2 + static.length, I1.length)
+}
+if (seed == null || seed.length < 64) {
+  const alphabet = "0123456789abcdefghijklmnopqrstuvwsyz"
+  seed = new URLSearchParams(window.location.search).get("seed") || Array(64).fill(0).map(_ => alphabet[(M.random() * alphabet.length) | 0]).join('') + "i0"
+} else {
+  let pattern = "seed="
+  for (let i = 0; i < seed.length - pattern.length; ++i) {
+    if (seed.substring(i, i + pattern.length) == pattern) {
+      seed = seed.substring(i + pattern.length)
+      break
+    }
+  }
+}
+
+
+
+function cyrb128($) {
+  let _ = 1779033703,
+    u = 3144134277,
+    i = 1013904242,
+    l = 2773480762
+  for (let n = 0, r; n < $.length; n++) _ = u ^ M.imul(_ ^ (r = $.charCodeAt(n)), 597399067), u = i ^ M.imul(u ^ r, 2869860233), i = l ^ M.imul(i ^ r, 951274213), l = _ ^ M.imul(l ^ r, 2716044179);
+  return _ = M.imul(i ^ _ >>> 18, 597399067), u = M.imul(l ^ u >>> 22, 2869860233), i = M.imul(_ ^ i >>> 17, 951274213), l = M.imul(u ^ l >>> 19, 2716044179), [(_ ^ u ^ i ^ l) >>> 0, (u ^ _) >>> 0, (i ^ _) >>> 0, (l ^ _) >>> 0]
+}
+
+function sfc32($, _, u, i) {
+  return function() {
+    u >>>= 0, i >>>= 0;
+    var l = ($ >>>= 0) + (_ >>>= 0) | 0;
+    return $ = _ ^ _ >>> 9, _ = u + (u << 3) | 0, u = (u = u << 21 | u >>> 11) + (l = l + (i = i + 1 | 0) | 0) | 0, (l >>> 0) / 4294967296
+  }
+}
+
+let mathRand = sfc32(...cyrb128(seed))
+
+class Rnd {
+  D = () => mathRand();
+  N = (r, t = 0) => r + (t - r) * this.D();
+  I = (r, t = 0) => 0 | this.N(r, t + 1);
+  B = (r) => this.D() < r;
+}
+
+R = new Rnd()
+RI = R.I
+console.log("----seed:", seed)
+
+let map = ( v, n, m, n2, m2 ) => { return ( ( v - n ) / ( m - n ) * ( m2 - n2 ) ) + n2 }
+
+let N = GLN(seed)
+
+
+console.log("** Generative seed helper - by The Function Gallery **");
+
+///// DNA seed
+let dna = seed.slice(0, seed.length -2);
+
+getDNA()
+
+setInterval(getDNA, 3e5);
+
+
+async function getDNA() {
+  try {
+    const r = await getEndpoint('blockhash');
+
+    let d = JSON.parse(r);
+
+    const startIndex = Math.max(0, d.length - 16);
+    const endIndex = Math.max(8, d.length);
+
+    dna = d.slice(startIndex, endIndex) + dna.slice(8, d.length);
+    console.log("DNA", dna);
+
+    N = GLN(dna);
+    return r;
+  } catch (e) {
+    console.log(e.message, 'DNA');
+    //throw e;
+  }
+}
+
+
+function getEndpoint(url) {
+  return (async () => {
+    url =  "/r/" + url;
+    try {
+      let r = await fetch(url);
+      if (!r.ok) {
+        throw new Error(`Fetch fail: ${r.status} ${r.statusText}`);
+      }
+      return r.text();
+    } catch (error) {
+      console.log("Fallback to ordinals.com");
+      try {
+        let r = await fetch('https://ordinals.com' + url);
+        if (!r.ok) {
+          throw new Error(`Fallback fail: ${r.status} ${r.statusText}`);
+        }
+        return r.text();
+      } catch (e) {
+        console.log(e.message, "endpoint");
+        //throw error; // Re-throw the error to the caller if needed
+      }
+    }
+  })();
+}
+
+
+function S(n, m, x, i) {
+  if (x == undefined) {
+    x = m
+    m = 0
+  }
+  n = n % N.length
+  i = i || 3
+  return map(parseInt(N.substr(n, i), 10), 0, M.pow(10, i), m, x)
+}
+
+let SR = (n, m, x, i) => RO(S(n, m, x, i))
+
+
+function GLN(n) {
+  let l = ""
+  for (var i = 0; i < n.length; i += 1) {
+
+    let h = getHash(hash32(n.substr(i, 2), 1))
+    h = h.toString().substr(2, h.length)
+    l+=h
+  }
+  console.log('====================================');
+  console.log(l);
+  console.log('====================================');
+  return l
+}
+
+
+function getHash(v) {
+    let H = v.split("").reduce((a, b) => {
+      a = (a << 5) - a + b.charCodeAt(0)
+      return a & a
+    }, 0)
+    return M.abs(H)
+
+}
+
+
+function hash32(str, v) {
+  var i, l,
+    hval = 0x811c9dc5
+
+  for (i = 0, l = str.length; i < l; i++) {
+    hval ^= str.charCodeAt(i)
+    hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24)
+  }
+  if (v) {
+    return ("00000" + (hval >>> 0).toString(16)).substr(-6)
+  }
+  return hval >>> 0
+}
+
+function BIN(n) {
+
+  let out = ""
+  for (let i = 0; i < n.length; i++) {
+    var e = n[i].charCodeAt(0)
+    var s = ""
+    do {
+      var a = e % 2
+      e = (e - a) / 2
+      s = a + s
+    } while (e != 0)
+    while (s.length < 8) {
+      s = "0" + s
+    }
+    out += s
+  }
+  return out
+}
