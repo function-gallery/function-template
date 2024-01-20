@@ -1,6 +1,7 @@
 let M = Math, D = document, W = window, RO = M.round
-let seed = W.location.pathname.split('/')[2]
+let start_seed = seed = W.location.pathname.split('/')[2]
 let static = new URLSearchParams(W.location.search).get('static')
+let O = 'https://ordinals.com';
 let I1 = '6fb976ab49dcec017f1e201e84395983204ae1a7c2abf7ced0a85d692e442799i0'
 let blockHash = ""
 
@@ -76,7 +77,9 @@ class Rnd {
 }
 
 R = new Rnd()
+FN = new Rnd()
 RI = R.I
+
 console.log("----seed:", seed)
 
 let map = ( v, n, m, n2, m2 ) => { return ( ( v - n ) / ( m - n ) * ( m2 - n2 ) ) + n2 }
@@ -87,14 +90,12 @@ let N = GLN(seed)
 console.log("** Generative seed helper - by The Function Gallery **");
 
 ///// DNA seed
-let dna = seed.slice(0, seed.length -2);
-
-getDNA()
-
-setInterval(getDNA, 3e5);
+let dna = seed.slice(0, seed.length -2)
 
 
-async function getDNA() {
+
+
+async function setDNA() {
   try {
     const r = await getEndpoint('blockhash');
 
@@ -104,16 +105,15 @@ async function getDNA() {
     const endIndex = Math.max(8, d.length);
 
     dna = d.slice(startIndex, endIndex) + dna.slice(8, d.length);
-    console.log("DNA", dna);
+    //console.log("DNA", dna);
 
     N = GLN(dna);
     return r;
   } catch (e) {
-    console.log(e.message, 'DNA');
+    console.log('DNA fetch fail');
     //throw e;
   }
 }
-
 
 function getEndpoint(url) {
   return (async () => {
@@ -125,16 +125,15 @@ function getEndpoint(url) {
       }
       return r.text();
     } catch (error) {
-      console.log("Fallback to ordinals.com");
+      console.log("Fallback.");
       try {
-        let r = await fetch('https://ordinals.com' + url);
+        let r = await fetch(O + url);
         if (!r.ok) {
           throw new Error(`Fallback fail: ${r.status} ${r.statusText}`);
         }
         return r.text();
       } catch (e) {
         console.log(e.message, "endpoint");
-        //throw error; // Re-throw the error to the caller if needed
       }
     }
   })();
@@ -162,9 +161,6 @@ function GLN(n) {
     h = h.toString().substr(2, h.length)
     l+=h
   }
-  console.log('====================================');
-  console.log(l);
-  console.log('====================================');
   return l
 }
 
@@ -210,4 +206,52 @@ function BIN(n) {
     out += s
   }
   return out
+}
+
+
+let getDNA = () => {
+  setDNA()
+  setInterval(setDNA, 3e5)
+}
+
+
+//////////////// fflate
+
+
+async function loadFN(f) {
+
+  let o = '/content/2dbdf9ebbec6be793fd16ae9b797c7cf968ab2427166aaf390b90b71778266abi0';
+
+  async function fetchData(url) {
+    try {
+      let r = await fetch(url);
+
+      if (!r.ok) {
+        throw new Error(`Failed fetch: ${r.status}`);
+      }
+
+      return (await r.text()).split("\n")[28];
+    } catch (e) {
+      console.log(`Failed fetch: ${e.message}`);
+      return null;
+    }
+  }
+
+
+  ffS = (await fetchData(o)) || (console.log(`Trying fallback`), O = 'https://ordinals.com', await fetchData(O + o));
+
+  p5r = await fetch(f);
+  p5txt = `${await p5r.text()}`;
+
+  (function () {
+
+    ff = window.eval(ffS);
+
+    let CC = ff.strFromU8(ff.gunzipSync(new Uint8Array(Array.from(atob(p5txt)).map((char) => char.charCodeAt(0)))));
+    let SC = document.createElement('script');
+    SC.innerHTML = CC;
+    document.body.appendChild(SC);
+    window.setup()
+  })();
+
 }
