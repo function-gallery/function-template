@@ -41,7 +41,7 @@ To get started with p5, include the onchain library p5.js in your html file, jus
 ## Seeds and CSS 
 In order to have a determinstic seed (bascially a PRNG random function) you need to include the following script in your hrml file. 
 
-<script src="https://ordinals.com/content/468ed32abc461867eb94aed96b4cf785bae8704845b00a982607d8f98245d7f6i0"></script>
+<script src="https://ordinals.com/content/a2509dacf018fcc6338c0b6b2fa83a24ae8bf227a773972caf5aaf16bed47dbei0"></script>
 
 
 Out of the box, this gives you:
