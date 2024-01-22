@@ -12,9 +12,9 @@ between art and technology with the idea of empowering creativity.
 
 - Inscription/Ordinal - an NFT
 -  Inscribe - minting
--  Sats - short for Satoshis, the smallest element of a Bitcopin block. Each Sat can hold an NFT (or a number of NFTs stacked ontop of eachother in layers)
+-  Sats - short for Satoshis, the smallest element of a Bitcopin block. Each Sat can hold an NFT (or a number of NFTs stacked ontop of each other in layers)
 -  Inscription Number - each new sat inscribed is given a sequential number, starting from 0.
--  Hash/seed/inscription ID - the blockchain address of your NFT - 64 characters followed by i0. Here's Casey's inscription 0: '6fb976ab49dcec017f1e201e84395983204ae1a7c2abf7ced0a85d692e442799i0'. If you wan to directly view the content of any inscription simply add 'https://ordinals.com/content/' in front of the ID, eg: [https://ordinals.com/content/6fb976ab49dcec017f1e201e84395983204ae1a7c2abf7ced0a85d692e442799i0]
+-  Hash/seed/inscriptionID - the blockchain address of your NFT - 64 characters followed by i0. Here's Casey's inscription 0: '6fb976ab49dcec017f1e201e84395983204ae1a7c2abf7ced0a85d692e442799i0'. If you wan to directly view the content of any inscription simply add 'https://ordinals.com/content/' in front of the ID, eg: [https://ordinals.com/content/6fb976ab49dcec017f1e201e84395983204ae1a7c2abf7ced0a85d692e442799i0]
 
 ## General Pointers
 - Size matters! Your filesize should be below 20k, preferably below 12k.
