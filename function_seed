@@ -15,12 +15,6 @@ function addSeed(){
 
 start_seed = seed = W.location.pathname.split('/')[2] || W.location.href.split('/').find(t=>t.includes('i0'))
 
-if (seed) {
-// remove i0 or ii0
-console.log(seed);
-seed = seed.substring(0, seed.length -2)
-console.log(seed);
-}
 
 // static seed generator
 let stat = new URLSearchParams(W.location.search).get('static')
@@ -35,6 +29,8 @@ if (seed == null || seed.length < 64) {
   const alphabet = "0123456789abcdefghijklmnopqrstuvwsyz"
   seed = new URLSearchParams(window.location.search).get("seed") || Array(64).fill(0).map(_ => alphabet[(M.random() * alphabet.length) | 0]).join('') + "i0"
 } else {
+  seed = seed.substring(0, seed.length -2)
+  console.log(seed);
   let pattern = "seed="
   for (let i = 0; i < seed.length - pattern.length; ++i) {
     if (seed.substring(i, i + pattern.length) == pattern) {
@@ -43,6 +39,8 @@ if (seed == null || seed.length < 64) {
     }
   }
 }
+
+
 
 }
 
@@ -106,9 +104,14 @@ class Rnd {
   B = (r) => this.D() < r;
 }
 
-R = new Rnd()
+//R = new Rnd()
 FN = new Rnd()
-RI = R.I
+RI = FN.I
+FI = FN.I
+FD = FN.D
+FN = FN.N
+FB = FN.B
+
 
 console.log("----seed:", seed)
 
