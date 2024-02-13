@@ -1,6 +1,7 @@
 # Function-template
 Template for Generative Art Inscriptions on Bitcoin
 
+
 ## Abstract
 The Function is a crypto art gallery on Bitcoin Blockchain.
 It's focus is on innovative onchain art, that can take the form of runtime art, blockchain art, long form generative, curated generative and more. 
@@ -25,7 +26,10 @@ between art and technology with the idea of empowering creativity.
 With recursion you can reference any file stored on Bitcoin, simple by referencing /content/<inscriptionId>
 And this is how we pull in p5 and the random seed generator.
 
-For a quick start see the boilerplace html file [[here](https://github.com/function-gallery/function-template/blob/main/index.html)]
+For a quick start see the boilerplate html file [[here](https://github.com/function-gallery/function-template/blob/main/index.html)]
+
+**NB!**
+**To make it easy to develop, and for the scripts to run in both locally and in the strict environments of platforms, where you cannot use external urls, you need to add ?dev=1 when developing locally**
 
 ## Onchain p5.js
 To get started with p5, include the onchain library p5.js in your html file, just lije you would include any other script. 
@@ -114,6 +118,13 @@ Endpoints allow you to pull data directly from the chain. The recursive endpoint
 - /r/sat/SOME_SAT_NUMBER                     : the first 100 inscription ids on a sat.
 - /r/sat/SOME_SAT_NUMBER/SOME_PAGE           : the set of 100 inscription ids of SOME_SAT_NUMBER on SOME_PAGE.
 - /r/sat/SOME_SAT_NUMBER/at/SOME_INDEX       : the inscription id at SOME_INDEX of all inscriptions on a sat.
+
+## FFLATE
+
+You can compress your script and get get about a 60% saving. We've included FFlate out of the box in the seed file. 
+Simply use deflateScript(ordId)
+
+To compress... will ad code later
 
 ## Three.js
 
