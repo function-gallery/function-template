@@ -5,14 +5,18 @@
     <meta charset="UTF-8">
     <title>Function</title>
 
+    <script>
+    Fn=(u,l)=>{D=document;dev=new URLSearchParams(location.search).get('dev');U=dev&&!l?'https://ordinals.com/':'';F=D.createElement('script');F.setAttribute("type",'text/javascript');F.src=U+u;D.head.appendChild(F)}
+
+    // use: Fn(url, local)
     <!-- p5.js -->
-    <script src="https://ordinals.com/content/303f35721fdc683c2b4d3c505bbcb9144988b20f0af3fe38c8a651dc24cae2f6i0"></script>
+    Fn('p5_ord.js', 1)
+    // Fn('/content/303f35721fdc683c2b4d3c505bbcb9144988b20f0af3fe38c8a651dc24cae2f6i0')
     <!-- seed -->
-    <script src="https://ordinals.com/content/a2509dacf018fcc6338c0b6b2fa83a24ae8bf227a773972caf5aaf16bed47dbei0"></script>
-
-    <!-- REMEMBER TO TAKE OUT  "https://ordinals.com" BEFORE YOU INSCRIBE!! -->
-
-    <script src="sketch.js"></script>
+    Fn('seed.js', 1)
+    // Fn('/content/a2509dacf018fcc6338c0b6b2fa83a24ae8bf227a773972caf5aaf16bed47dbei0')
+    Fn('sketch.js', 1)
+  </script>
 </head>
 
 <body>
