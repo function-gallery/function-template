@@ -49,11 +49,12 @@ In order to have a determinstic seed (bascially a PRNG random function) you need
 
 
 Out of the box, this gives you:
-- a deterministic random function
+- a deterministic random function - FN
 - global variable 'seed' - your inscription ID 
 - boilerplace css inserted into your html file to center your canvas
-- a second "seeded random function" - that determines it's values directly from the hashed seed
+- a second "long number seeded random function" S() - that determines it's values directly from the hashed seed
 - Global helper variables: M = Math, W = Window, D = Document
+- A DNA seeder, that mutates the seed as Bitcoin blackhash advances 
 
 The CSS injected is this:
 
@@ -83,10 +84,13 @@ The CSS injected is this:
 ** never use P5's built in random function, this will break determinism of your gen art, which is a bad thing **
 
 There's a few ways to use the random, 
-
-- Use mathRand() to generate deterministic random values between 0, 1
-
 - Use RI(min, max) to generated a random Intiger between min and max
+- Use FI(min, max) to generated a random Intiger between min and max
+  (you can use FI(max) if you want an int from 0 to max
+  
+- Use oldschool mathRand() to generate deterministic random values between 0, 1
+
+
 
 - Use the random class FN
   FN.D()       :Random Decimal:   output in range 0-1
@@ -94,7 +98,7 @@ There's a few ways to use the random,
   FN.I(a,b)    :Random Intiger:   output a whole number in the range a to b 
   FN.B(b)      :Random Boolean:   chance of returning true, where b is a percentage in range 0 to 1
 
-- Use seedhash S(n, min, max) - generates an intiger tightly based on the seed, where n can be any number, and the output is an initiger between min and max
+- Use long number seedhash S(n, min, max) - generates an intiger tightly based on the seed, where n can be any number, and the output is an initiger between min and max
 
 ## Attributes
 To include attributes and rarities in your project, simply add this function:
@@ -104,6 +108,11 @@ To include attributes and rarities in your project, simply add this function:
  "trait2": "value2",
  "trait3": "value3"
 }`
+
+## DNA
+
+An easy solution to create runtime gen art - forever evolving as the blockchain evolves.
+You need to call getDNA() to fire it up. and use S(n, min, max) not FN() or RI() as your random generator
 
 ## Ordinal endpoints
 
