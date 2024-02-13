@@ -93,10 +93,11 @@ There's a few ways to use the random,
 
 
 - Use the random class FN
-  FN.D()       :Random Decimal:   output in range 0-1
-  FN.N(a,b)    :Random Number:    output a float number in the range a to b 
-  FN.I(a,b)    :Random Intiger:   output a whole number in the range a to b 
-  FN.B(b)      :Random Boolean:   chance of returning true, where b is a percentage in range 0 to 1
+  - FN.D()       :Random Decimal:   output in range 0-1
+  - FN.N(a,b)    :Random Number:    output a float number in the range a to b 
+  - FN.I(a,b)    :Random Intiger:   output a whole number in the range a to b 
+  - FN.B(b)      :Random Boolean:   chance of returning true, where b is a percentage in range 0 to 1
+  - shorthand even better FN, FD, FI, FB
 
 - Use long number seedhash S(n, min, max) - generates an intiger tightly based on the seed, where n can be any number, and the output is an initiger between min and max
 
