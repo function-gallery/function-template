@@ -136,8 +136,13 @@ The CSS injected is this:
 - This will give you an ever changing global variable `dna`.
 - Use S(n, min, max) not RI() etc. as your random generator and your art will automagically evolve. 
 
+## Binary
 
-## Attributes
+You also get a global 'bin' variable with is a binary representation of your seed.
+- you can also use the function BIN(s) to turn any string into a binary string
+- you can then traverse the binary string using isBin(n) to check whether a point along the binary string is 0 or 1 (true or false)
+
+## Attributes/Rarity
 To include attributes and rarities in your project, simply add this function:
 
 `window.$functionAttribute = {
