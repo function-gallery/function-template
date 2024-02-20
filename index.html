@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>Function</title>
 
     <script>
-    Fn=(u,l)=>{D=document;dev=new URLSearchParams(location.search).get('dev');U=dev&&!l?'https://ordinals.com/':'';F=D.createElement('script');F.setAttribute("type",'text/javascript');F.src=U+u;D.head.appendChild(F)}
+    // DON'T CHANGE THIS
+    Fn=(u,l)=>{D=document;dev=new URLSearchParams(location.search).get('dev');F=D.createElement('script');F.src=(dev&&!l?'https://ordinals.com/content/':'')+u; return new Promise((y, n) => {F.onload = y;F.onerror = n;D.head.appendChild(F);})};
 
-    // use: Fn(url, local)
+    // use: Fn(url, local) to load a script
+    // use: dFn(url, local) to load a gzipped script
+
     <!-- p5.js -->
-    Fn('p5_ord.js', 1)
-    // Fn('/content/303f35721fdc683c2b4d3c505bbcb9144988b20f0af3fe38c8a651dc24cae2f6i0')
+    Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0')
+    //Fn('p5_ord.js', 1)
     <!-- seed -->
-    Fn('seed.js', 1)
-    // Fn('/content/a2509dacf018fcc6338c0b6b2fa83a24ae8bf227a773972caf5aaf16bed47dbei0')
-    Fn('sketch.js', 1)
-  </script>
-</head>
+    // .then(() => Fn('seed.js', 1))
+    .then(() => Fn('769a54f380f3d70bd865fd2b204d8b1502769ea739139978b128cd995208d058i0'))
+    <!-- sketch -->
+    .then(() => Fn('sketch.js', 1))
+    //.then(() => dFn('orinalId')) // compressed_sketch.min.js
 
-<body>
+    </script>
+  </head>
 
-</body>
+<body></body>
 
 </html>
