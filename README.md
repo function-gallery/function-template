@@ -154,9 +154,9 @@ To include attributes and rarities in your project, simply add this function:
 
 ## Ordinal endpoints
 
-We've made it easy to call endpoints:
-let endpoint_value = await getEndpoint('SOME_INSCRIPTION_ENDPOINT');
-eg. let current_blocktime = await getEndpoint('blocktime');
+We've made it easy to call endpoints: 
+getEndpoint('SOME_INSCRIPTION_ENDPOINT').then(d => endpoint_value = d);
+eg. getEndpoint('blocktime').then(d => current_blocktime = d)
 
 Endpoints allow you to pull data directly from the chain. The recursive endpoints avaialble are:
 - /r/blockhash/SOME_HEIGHT: block hash at given block height.
