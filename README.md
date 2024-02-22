@@ -1,10 +1,10 @@
 # Function-template
 Template for Generative Art Inscriptions on Bitcoin
 
-###Quiclinks:
-P5:  [d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0](https://ordinals.com/content/d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0)
+##Quiclinks:
+P5.js: [d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0](https://ordinals.com/content/d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0)
 
-Seed: 
+Seed: [c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0](https://ordinals.com/content/c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0)
 
 
 
@@ -83,8 +83,8 @@ Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0')
 
 ## Seeds and CSS 
 In order to have a determinstic seed (bascially a PRNG random function) you need to include the following script in your hrml file. 
-Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0')
-which is the same as going: `<script src="https://ordinals.com/content/a2509dacf018fcc6338c0b6b2fa83a24ae8bf227a773972caf5aaf16bed47dbei0"></script>`
+Fn('c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0')
+which is the same as going: `<script src="https://ordinals.com/content/c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0"></script>`
 
 Out of the box, this gives you:
 - a deterministic random function - R
