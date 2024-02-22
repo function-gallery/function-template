@@ -2,7 +2,7 @@
 Template for Generative Art Inscriptions on Bitcoin
 
 ##Quiclinks:
-P5.js: [d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0](https://ordinals.com/content/d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0)
+P5.js: [45f3b53c0448b75e47e03080f79182b5116a8c4b5112cfa797b4431d36aaab69](https://ordinals.com/content/45f3b53c0448b75e47e03080f79182b5116a8c4b5112cfa797b4431d36aaab69)
 
 Seed: [c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0](https://ordinals.com/content/c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0)
 
@@ -77,7 +77,7 @@ While testing you can mix and match, so for example only load your local sketch 
 
 ## Onchain p5.js
 To get started with p5, include the onchain library p5.js in your html file, simply by using our helper function:
-Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0')
+Fn('45f3b53c0448b75e47e03080f79182b5116a8c4b5112cfa797b4431d36aaab69')
 
 - If you don't need to use P5, or if you're using webGL you can simply skip loading p5
 
