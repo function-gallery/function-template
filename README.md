@@ -1,6 +1,11 @@
 # Function-template
 Template for Generative Art Inscriptions on Bitcoin
 
+###Quiclinks:
+P5:  [[d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0] (https://ordinals.com/content/d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0)]
+Seed: 
+
+
 
 ## Abstract
 The Function is the new home for generative and crypto art on Bitcoin.
