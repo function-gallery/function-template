@@ -3,8 +3,8 @@
 (async function () {
   let W = window, D = document;
   let dev = new URLSearchParams(W.location.search).get('dev')
-  let U = dev ? 'https://ordinals.com/content/' : ''
-  let fflateUrl = U + '2dbdf9ebbec6be793fd16ae9b797c7cf968ab2427166aaf390b90b71778266abi0';
+  let U = dev ? 'https://ordinals.com' : ''
+  let fflateUrl = U + '/content/2dbdf9ebbec6be793fd16ae9b797c7cf968ab2427166aaf390b90b71778266abi0';
 
   async function fetchFlate(url) {
       try {
@@ -22,7 +22,7 @@
   }
 
   ffS = await fetchFlate(fflateUrl)
-  p5r = await fetch(U + '255ce0c5a0d8aca39510da72e604ef8837519028827ba7b7f723b7489f3ec3a4i0');
+  p5r = await fetch(U + '/content/255ce0c5a0d8aca39510da72e604ef8837519028827ba7b7f723b7489f3ec3a4i0');
   p5txt = `${await p5r.text()}`;
 
   (function () {
