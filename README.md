@@ -192,6 +192,20 @@ Once you've inscribed your file use:
 dFn(ordId) to load in an onchain gzipped script, or
 dFn('my_local_script.js', 1) to test a local compressed script
 
+## TESTNET
+
+You can now test your files on Bitcoin testnet. You can get testnet BTC here: https://bitcoinfaucet.uo1.net/
+
+See index_testnet.html 
+
+- testnet seed
+  248c4c2f8eff6ad61d3aa441258fa5beb29ac5290de76a92e8fb908343c6376bi0
+- testnet fflate
+  657973995aa2a47c3fe02debb22405dadf6b49148d97027627bced89a73f408fi0
+- testnet p5
+  d1fc9ee2d1877927643978045b80078d8e5b2dd49e04d309f5453c8dc4ac269fi0
+
+
 
 ## Three.js
 
