@@ -2,11 +2,12 @@
 Template for Generative Art Inscriptions on Bitcoin
 
 ##Quiclinks:
-P5.js: [471498e981ff7bdf0448fd15d5bd428cece8597a177322f8748169debd35bc6di0](https://ordinals.com/content/471498e981ff7bdf0448fd15d5bd428cece8597a177322f8748169debd35bc6di0)
-
+P5.js: [cc5cf94da24c1f6f0d435ccca78c24e98ca30adb1f3b7c81b9ab28ceb6cb628fi0](https://ordinals.com/content/cc5cf94da24c1f6f0d435ccca78c24e98ca30adb1f3b7c81b9ab28ceb6cb628fi0)
+FFlate: [f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0](https://ordinals.com/content/f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0)
 Seed: [c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0](https://ordinals.com/content/c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0)
+ChromaJS: [c49f28a5c9e67efb85d44b9ee12efa2839b0251bad14efc5e6c32406505e259ci0](c49f28a5c9e67efb85d44b9ee12efa2839b0251bad14efc5e6c32406505e259ci0)
 
-- testnet seed 248c4c2f8eff6ad61d3aa441258fa5beb29ac5290de76a92e8fb908343c6376bi0
+- testnet seed b474498d1fab6e07be9543c3bdc8f4403fe871c9750bc887195ca57735c7159bi0
 - testnet fflate 657973995aa2a47c3fe02debb22405dadf6b49148d97027627bced89a73f408fi0
 - testnet p5 d1fc9ee2d1877927643978045b80078d8e5b2dd49e04d309f5453c8dc4ac269fi0
 
@@ -28,45 +29,48 @@ By putting the artist first, The Function operates at the intersection between a
 
 ## General Pointers
 - Size matters! Your filesize should be below 20k, preferably below 10k. We have some tricks to help you do this. As well as including FFfalt to compress your file by around 60%
-- Keep your html file as empty as possible. Through the magic of recursion, this keeps the collector inscription fees to a minimum.
+- The collector only mints your html file, so try make this as light as possible (under 1k). Our included index.min.html file is 550 bytes, which is just right.  
+- Keep your html file as empty as possible. Through the magic of recursion (using ordinals as a filesystem), keeps the collector inscription fees to a minimum.
 - We currently support p5 and webGL. If you want to use threeJS, there is one inscribed. As are a number of other libraries which you can find here: [https://github.com/jokie88/ordinalpublicgoods?tab=readme-ov-file](https://github.com/jokie88/ordinalpublicgoods?tab=readme-ov-file)
 - Minify your code and html using something like [https://codebeautify.org/minify-js]
-- Compress your sketch file (more on this below)
-- The collector only mints your html file, so try make this as light as possible (under 1k). Our included index.min.html file is 550 bytes, which is just right.  
+- Compress your sketch file using our gzip compress utility (more on this below)
+
   
 ## Project Structure & Recursion
 
-**NB!**
-**To make it easy to develop, and for the scripts to run in both locally and in the strict environments of platforms, where you cannot use external urls, you need to add ?dev=1 when developing locally**
+With recursion you can reference any file stored on Bitcoin, simple by referencing https://ordinals.com/content/<inscriptionId>
 
 -> html file - this gets inscribed by us and sent to the collector on mint
--> p5.js (optional) - this is onchain - include a reference  to it in your html file if needed
+-> p5.js (optional) - this is onchain - include a reference to it in your html file if needed
 -> your_sketch.js - this you need to inscribe and then reference ibn your html file
 -> some_other_library_you_want_to_use.js - this you need to inscribe and then reference ibn your html file
 
 For a quick start see the boilerplate html file [[here](https://github.com/function-gallery/function-template/blob/main/index.html)]
 
-
-With recursion you can reference any file stored on Bitcoin, simple by referencing https://ordinals.com/content/<inscriptionId>
+**NB! The biggest gotcha**
+To make it easy to develop, and for the scripts to run in both locally and in the strict environments of platforms, where you cannot use external urls,
+**you need to add ?dev=1 when developing locally**
+**Do not ever use https://ordinals.com in your production version or it will break on various marketplaces**
+***The biggest gotcha is forgetting to add ?dev=1 to your dev url, which adds the the implicit link of "https://ordinals.com" and makes it relative /content/xxxx when you inscribe***
 
 So we have made this much simpler for you. (and saved you some valuable bytes on the process)
 
 ## To load any script:
 Use: Fn(url, local) to load a script
-Use: dFn(url, local) to load a gzipped script
+Use: dFn(url, local) to load and decompress a gzipped script
 
-- To test with local files you need to add a second paramater to fN() - fN('my_file.js', 1j
-- This is the same as loading the script: `<script src="my_file.js"></script>`
-- For onchain versions you don't need the second paramter, eg. Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0')
-- This is the same as loading the script: `<script src="https://ordinals.com/content/d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0"></script>`
+- To test with local files you need to add a second paramater to fN() - fN('my_file.js', 1j. This is the same as loading the script: `<script src="my_file.js"></script>`
+- For onchain versions you don't need the second paramter, simply use: fN(somneInscriptionID), eg. Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0') - this is the same as loading the script: `<script src="https://ordinals.com/content/d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0"></script>`
 
 Its best to chain these files together so they load in sequence and load dependencies before you run your main script file. 
 
 - A local setup might look like this: Fn('you_p5_file', 1).then(() => Fn('seed.js', 1)).then(() => Fn('sketch.js', 1))
-- A production setup would be:
+- or mixing and matching local setup might look like this:
+  Fn('769a54f380f3d70bd865fd2b204d8b1502769ea739139978b128cd995208d058i0?p5') // seed with p5
+  .then(() => dFn('sketch.js.gzip', 1)) // load and decompress your gzipped script - note the local dFN(xxx **,1**) variable to denote a local file on your hardrive
 
-  Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0') // onchain p5
-  .then(() => Fn('769a54f380f3d70bd865fd2b204d8b1502769ea739139978b128cd995208d058i0')) // onchain seed
+- A production setup would be:
+  Fn('769a54f380f3d70bd865fd2b204d8b1502769ea739139978b128cd995208d058i0?p5')) // onchain seed and p5
   .then(() => Fn('my_ordinal_id')) // onchain sketch
 
 While testing you can mix and match, so for example only load your local sketch like so:
@@ -74,20 +78,21 @@ While testing you can mix and match, so for example only load your local sketch 
   .then(() => Fn('769a54f380f3d70bd865fd2b204d8b1502769ea739139978b128cd995208d058i0')) // onchain seed
   .then(() => Fn('sketch.js', 1)) // local sktech
 
-  It's best to compress your sketch (but not necessary) if you want to save some $$$ especially if it is larger than 10k. 
-  If you want to inscribe and use any external libraries or helper functions best to compress those too. 
-  See FFLATE below for more info...
+- This may be sound a bit confusing at first, but the best way we've found so far to mix localtions.
+- So to recap: ?dev=1 handles url calls to ordinals. if you're testing a script locally on your machine (eg. script.js) then use the local variable - which is specific to each script loaded, meaning you can mix and match scripts, for example call the onchain version of seed.js - Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0') - while loading a local file eg. script.js Fn('script.js', 1)
 
-## Onchain p5.js
-To get started with p5, include the onchain library p5.js in your html file, simply by using our helper function:
-Fn('471498e981ff7bdf0448fd15d5bd428cece8597a177322f8748169debd35bc6di0')
 
-- If you don't need to use P5, or if you're using webGL you can simply skip loading p5
+It's also best to compress your sketch (but not necessary) if you want to save some $$$ especially if it is larger than 10k. 
+If you want to inscribe and use any external libraries or helper functions best to compress those too, and load them with dFN(). 
+See FFLATE below for more info...
 
 ## Seeds and CSS 
-In order to have a determinstic seed (bascially a PRNG random function) you need to include the following script in your hrml file. 
+
+For a determinstic seed (bascially a PRNG random function) you need to include the Function seed script in your hrml file. 
 Fn('c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0')
 which is the same as going: `<script src="https://ordinals.com/content/c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0"></script>`
+
+Add ?p5 to the url to easily include p5.js in your sketch. 
 
 Out of the box, this gives you:
 - a deterministic random function - R
@@ -95,9 +100,29 @@ Out of the box, this gives you:
 - boilerplace css inserted into your html file to center your canvas
 - A DNA seeder, that mutates the seed as Bitcoin blackhash advances
 - A second "long number seeded random function" S() - that determines it's values directly from the hashed seed and can evolve over time with the DNA
-- Global helper variables: M = Math, W = Window, D = Document
+- Global helper variables: M = Math, W = Window, D = Document, RO = Math.round
+- Behind the scenes handling of urls
 
-## CSS 
+## Random
+
+- Use the global random class R for deterministic random values
+  - RD()       :Random Decimal:   output in range 0-1
+  - RN(a,b)    :Random Number:    output a float number in the range a to b 
+  - RI(a,b)    :Random Intiger:   output a whole number in the range a to b 
+  - RB(b)      :Random Boolean:   chance of returning true, where b is a percentage in range 0 to 1
+  - You can also use, RI(max), RD(max) etc. if you want you minimum number to be 0
+
+**DO NOT use Math.random() or P5's built in random function. And probsbly don't use randomSeed(RI(some_high_number)**
+
+### Onchain p5.js
+To get started with p5, include the onchain library p5.js in your html file, simply add ?p5 when loading the seed:
+Fn('471498e981ff7bdf0448fd15d5bd428cece8597a177322f8748169debd35bc6di0')
+
+- Current version is p5.js 1.9.0
+- remember for your local development to add ?dev=1 to your browser url
+- If you don't need to use P5, or if you're using webGL you can simply skip loading p5
+
+### CSS 
 
 The CSS injected is this:
 
@@ -122,17 +147,6 @@ The CSS injected is this:
 
   This CSS willl be good for 99% of all uses cases. However, if you want to add other styles simply add them on top of these in your html file. 
 
-## Random
-
-** never use P5's built in random function, this will break determinism of your gen art, which is a bad thing **
-
-- Use the global random class R
-  - R.D()       :Random Decimal:   output in range 0-1
-  - R.N(a,b)    :Random Number:    output a float number in the range a to b 
-  - R.I(a,b)    :Random Intiger:   output a whole number in the range a to b 
-  - R.B(b)      :Random Boolean:   chance of returning true, where b is a percentage in range 0 to 1
-  - shorthand even better RN, RD, RI, RB
-  - (you can use, for example, RI(max) if you want you min number to be 0), or RD(max) etc.
 
 
 ## Long number seed hash and DNA
@@ -197,12 +211,14 @@ dFn('my_local_script.js', 1) to test a local compressed script
 
 ## TESTNET
 
-You can now test your files on Bitcoin testnet. You can get testnet BTC here: https://bitcoinfaucet.uo1.net/
+You can now test your files on Bitcoin testnet. You can get testnet BTC here: [https://bitcoinfaucet.uo1.net/](https://bitcoinfaucet.uo1.net/)
 
 See index_testnet.html 
 
+Simple add ?&test=1 to your url to switch to testnet urls
+
 - testnet seed
-  248c4c2f8eff6ad61d3aa441258fa5beb29ac5290de76a92e8fb908343c6376bi0
+  b474498d1fab6e07be9543c3bdc8f4403fe871c9750bc887195ca57735c7159bi0
 - testnet fflate
   657973995aa2a47c3fe02debb22405dadf6b49148d97027627bced89a73f408fi0
 - testnet p5
@@ -212,12 +228,8 @@ See index_testnet.html
 
 ## Three.js
 
-A simple boilerplace created by the wizard himself: https://twitter.com/lifofifo
+A simple boilerplace created by the wizard himself: [https://twitter.com/lifofifo](https://twitter.com/lifofifo)
 [https://github.com/function-gallery/function-template/blob/main/threejs_boilerplate.html]
-
-** Do not ever use https://ordinals.com in your production version or it will break on various marketplaces **
-***The biggest gotcha is remembering to remove the implicit link of "https://ordinals.com" and make it relative /content/xxxx before you inscribe***
-** if you move our Fn or dFn methods - no need to worry about this 
 
 
 ##
