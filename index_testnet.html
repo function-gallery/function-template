@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Function</title>
+
+
+  <!--
+// mainnet seed
+// 5e6b05517c8b1060f4e678c4f41960a2760d3de600cefbd18f001110caa7e89fi0
+// mainnet fflate
+// f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0
+// mainnet p5
+// cc5cf94da24c1f6f0d435ccca78c24e98ca30adb1f3b7c81b9ab28ceb6cb628fi0
+-->
+
+  <!--
+// testnet seed
+// b474498d1fab6e07be9543c3bdc8f4403fe871c9750bc887195ca57735c7159bi0
+// testnet fflate
+// 657973995aa2a47c3fe02debb22405dadf6b49148d97027627bced89a73f408fi0
+// testnet p5
+// d1fc9ee2d1877927643978045b80078d8e5b2dd49e04d309f5453c8dc4ac269fi0
+-->
+
+  <script>
+    let Fn = (uu, n) => {
+      return new Promise((Y, N) => {
+        let US = new URLSearchParams(window.location.search)
+        let DV = US.get('dev')
+        let T = US.get('test')
+        let s = document.createElement('script');
+        let url = T ? 'https://testnet.ordinals.com' : 'https://ordinals.com'
+        s.src = (DV && !n) ? url + '/content/' + uu : uu;
+        s.onload = Y;
+        document.head.appendChild(s);
+      });
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <script>
+    //Fn('b474498d1fab6e07be9543c3bdc8f4403fe871c9750bc887195ca57735c7159bi0') // testnet seed
+    Fn('testnet_seed.js?p5', 1)
+    // .then(
+    // () => dFn('c49f28a5c9e67efb85d44b9ee12efa2839b0251bad14efc5e6c32406505e259ci0') // chroma.min.js
+    // )
+      .then(
+        () => dFn('sketch.js.gz', 1) // use dFn() for gzipped files and Fn() for uncompressed files
+      )
+  </script>
+
+</body>
+
+</html>
