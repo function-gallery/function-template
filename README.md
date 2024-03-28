@@ -4,7 +4,7 @@ Template for Generative Art Inscriptions on Bitcoin
 ##Quiclinks:
 P5.js: [cc5cf94da24c1f6f0d435ccca78c24e98ca30adb1f3b7c81b9ab28ceb6cb628fi0](https://ordinals.com/content/cc5cf94da24c1f6f0d435ccca78c24e98ca30adb1f3b7c81b9ab28ceb6cb628fi0)
 FFlate: [f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0](https://ordinals.com/content/f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0)
-Seed: [c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0](https://ordinals.com/content/c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0)
+Seed: [39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0](https://ordinals.com/content/39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0)
 ChromaJS: [c49f28a5c9e67efb85d44b9ee12efa2839b0251bad14efc5e6c32406505e259ci0](c49f28a5c9e67efb85d44b9ee12efa2839b0251bad14efc5e6c32406505e259ci0)
 
 - testnet seed b474498d1fab6e07be9543c3bdc8f4403fe871c9750bc887195ca57735c7159bi0
@@ -70,7 +70,7 @@ Its best to chain these files together so they load in sequence and load depende
   .then(() => dFn('sketch.js.gzip', 1)) // load and decompress your gzipped script - note the local dFN(xxx **,1**) variable to denote a local file on your hardrive
 
 - A production setup would be:
-  Fn('769a54f380f3d70bd865fd2b204d8b1502769ea739139978b128cd995208d058i0?p5')) // onchain seed and p5
+  Fn('39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0?p5')) // onchain seed and p5
   .then(() => Fn('my_ordinal_id')) // onchain sketch
 
 While testing you can mix and match, so for example only load your local sketch like so:
@@ -89,8 +89,8 @@ See FFLATE below for more info...
 ## Seeds and CSS 
 
 For a determinstic seed (bascially a PRNG random function) you need to include the Function seed script in your hrml file. 
-Fn('c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0')
-which is the same as going: `<script src="https://ordinals.com/content/c353b15bc84b178b65b19f16354b7303a8f10dceb85c5545b2173ce0a759059ci0"></script>`
+Fn('39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0')
+which is the same as going: `<script src="https://ordinals.com/content/39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0"></script>`
 
 Add ?p5 to the url to easily include p5.js in your sketch. 
 
