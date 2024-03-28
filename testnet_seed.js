@@ -16,12 +16,14 @@ let con = '/content/'
 let dev = new URLSearchParams(W.location.search).get('dev')
 let U = dev ? ord + con : con
 let ordR = ord + '/r/';
-let fflateUrl = U + '657973995aa2a47c3fe02debb22405dadf6b49148d97027627bced89a73f408fi0';
-let p5Url = U + 'd1fc9ee2d1877927643978045b80078d8e5b2dd49e04d309f5453c8dc4ac269fi0'
-console.log("-----", U);
+let fflateUrl = U + '657973995aa2a47c3fe02debb22405dadf6b49148d97027627bced89a73f408fi0'; // fflate
+let p5Url = U + 'd1fc9ee2d1877927643978045b80078d8e5b2dd49e04d309f5453c8dc4ac269fi0'; // p5.js 1.9.0
+console.log("base url: ", U);
+
+// thanks to the colorBlocks for this solution
 
 const gzlib = {
-  load: async (t, e) => {
+  load: async (t, e, ev) => {
     const a = await (await fetch(t)).text(),
       c = new Blob([a], {
         type: "application/javascript"
@@ -30,37 +32,47 @@ const gzlib = {
       i = await import(n),
       o = await (await fetch(e)).text(),
       d = i.strFromU8(i.decompressSync(i.strToU8(atob(o), !0))),
-      p = document.createElement("script");
-    p.innerHTML = d, document.head.appendChild(p), document.dispatchEvent(new Event("gzlibLoaded"))
+      p = D.createElement("script");
+    p.innerHTML = d, D.head.appendChild(p), D.dispatchEvent(new Event(ev))
   }
 };
 
+let unzipLib = (zipLibUrl, e) => {
+  e = e || zipLibUrl
+  gzlib.load(fflateUrl, zipLibUrl, e);
+  W.addEventListener(e, () => {
+    console.log('--->', e);
+  })
+}
 
-(function() {
 
-  var scripts = D.getElementsByTagName('script');
+// decompress
 
-  for (var i = 0; i < scripts.length; i++) {
-    var currentScript = scripts[i];
-    var scriptSrc = currentScript.getAttribute('src');
+let dFn = (compressId, loc) => {
+  compressId = loc? compressId: U + compressId
+  unzipLib(compressId)
+}
 
-    if (scriptSrc && scriptSrc.includes('?p5')) {
-      console.log("Load P5");
-      gzlib.load(fflateUrl, p5Url);
-      W.addEventListener('gzlibLoaded', () => {
-        console.log("** TESTNET P5js helper - by The Function Gallery **");
-      })
+
+
+let p5 = () => {
+
+  let s = D.getElementsByTagName('script');
+
+  for (let i = 0; i < s.length; i++) {
+    let currentScript = s[i];
+    let src = currentScript.getAttribute('src');
+
+    if (src && src.includes('p5')) {
+      unzipLib(p5Url, 'p5Loaded');
+      console.log("** P5js helper - by The Function Gallery **");
       break;
     }
   }
-}());
+}
 
 
-
-
-
-
-function addSeed() {
+let addSeed= () => {
 
   seed = W.location.href.split('/').find(t => t.includes('i0')) || W.location.pathname.split('/')[2]
 
@@ -74,7 +86,7 @@ function addSeed() {
 
   if (seed == null || seed.length < 64) {
     const alphabet = "0123456789abcdefghijklmnopqrstuvwsyz"
-    seed = new URLSearchParams(window.location.search).get("seed") || Array(64).fill(0).map(_ => alphabet[(M.random() * alphabet.length) | 0]).join('') + "i0"
+    seed = new URLSearchParams(W.location.search).get("seed") || Array(64).fill(0).map(_ => alphabet[(M.random() * alphabet.length) | 0]).join('') + "i0"
   } else {
     console.log(seed);
     let pattern = "seed="
@@ -86,10 +98,11 @@ function addSeed() {
     }
   }
 
-
 }
 
 addSeed()
+p5()
+
 dna = seed.substring(0, seed.length - 2)
 
 function cyrb128($) {
@@ -104,7 +117,7 @@ function cyrb128($) {
 function sfc32($, _, u, i) {
   return function() {
     u >>>= 0, i >>>= 0;
-    var l = ($ >>>= 0) + (_ >>>= 0) | 0;
+    let l = ($ >>>= 0) + (_ >>>= 0) | 0;
     return $ = _ ^ _ >>> 9, _ = u + (u << 3) | 0, u = (u = u << 21 | u >>> 11) + (l = l + (i = i + 1 | 0) | 0) | 0, (l >>> 0) / 4294967296
   }
 }
@@ -117,8 +130,6 @@ class Rnd {
   I = (r = 0, t) => (t === undefined ? (t = r, r = 0) : undefined, 0 | this.N(r, t + 1));
   B = (r) => this.D() < r;
 }
-
-
 
 const R = new Rnd()
 const RI = R.I
@@ -133,7 +144,7 @@ let map = (v, n, m, n2, m2) => {
   return ((v - n) / (m - n) * (m2 - n2)) + n2
 }
 
-console.log("** TESTNET seed helper - by The Function Gallery **");
+console.log("** seed helper - by The Function Gallery **");
 
 
 // Long number seed random
@@ -167,7 +178,7 @@ let bin = BIN(N)
 let getDNA = (t) => {
   t = t || 300
   blockhash = setDNA()
-  setInterval(setDNA, t * e3)
+  setInterval(setDNA, t * 10e3)
 }
 
 let dnaEndpoint = 'blockhash';
@@ -185,7 +196,6 @@ async function setDNA() {
 
     dna = d.slice(startIndex, endIndex) + dna.slice(8, d.length);
 
-    // generate a new long number
     N = GLN(dna);
     return r;
   } catch (e) {
@@ -215,22 +225,11 @@ function getEndpoint(url) {
 
 
 
-function Fn(u) {
-  u = U + u
-  console.log("load", u);
-  let F = D.createElement('script');
-  F.src = u;
-  D.head.appendChild(F)
-}
-// return new Promise((y, n) => {F.onload = y;F.onerror = n;D.head.appendChild(F);})};
-
-
-
 // a log number is generated from the seed
 
 function GLN(n) {
   let l = ""
-  for (var i = 0; i < n.length; i += 1) {
+  for (let i = 0; i < n.length; i += 1) {
 
     let h = getHash(hash32(n.substr(i, 2), 1))
     h = h.toString().substr(2, h.length)
@@ -250,7 +249,7 @@ function getHash(v) {
 }
 
 function hash32(str, v) {
-  var i, l,
+  let i, l,
     hval = 0x811c9dc5
   for (i = 0, l = str.length; i < l; i++) {
     hval ^= str.charCodeAt(i)
@@ -270,10 +269,10 @@ function BIN(n) {
 
   let out = ""
   for (let i = 0; i < n.length; i++) {
-    var e = n[i].charCodeAt(0)
-    var s = ""
+    let e = n[i].charCodeAt(0)
+    let s = ""
     do {
-      var a = e % 2
+      let a = e % 2
       e = (e - a) / 2
       s = a + s
     } while (e != 0)
@@ -296,64 +295,14 @@ let isBin = (n) => {
 let SR = (n, m, x, i) => RO(S(n, m, x, i))
 
 
-// decompress
 
-async function dFn(compressId) {
-  try {
 
-    // let U = dev ? ordC : con;
-    // let U2 = dev2 ? ordC : con;
-    let fflateUrl = U + '2dbdf9ebbec6be793fd16ae9b797c7cf968ab2427166aaf390b90b71778266abi0';
-
-    //ordId.includes('i0'))
-    let compressUrl = compressId.includes('i0') ? U + compressId : compressId
-
-    async function fetchFlate(url) {
-      try {
-        let r = await fetch(url);
-        return (await r.text()).split("\n")[28];
-      } catch (e) {
-        console.log(`Failed fetch: ${e.message}`);
-        return null;
-      }
-    }
-
-    async function fetchOrd(url) {
-      try {
-        let r = await fetch(url);
-        return await r.text();
-      } catch (e) {
-        console.log(`Failed ord fetch: ${e.message}`);
-        return null;
-      }
-    }
-
-    const ffS = await fetchFlate(fflateUrl);
-    const OT = await fetchOrd(compressUrl);
-
-    (function() {
-      let ff = new Function(`
-        return (function() {
-          ${ffS}
-          return { gunzipSync: sr, strFromU8: ur };
-        })();
-      `)();
-
-      if (ff && ff.gunzipSync && ff.strFromU8) {
-        let CC = ff.strFromU8(ff.gunzipSync(new Uint8Array(Array.from(atob(OT)).map((char) => char.charCodeAt(0)))));
-        let CS = document.createElement('script');
-        CS.innerHTML = CC;
-        document.head.appendChild(CS); // This line is now inside the onload handler
-
-      } else {
-        console.error('gunzip issue');
-      }
-    })();
-
-  } catch (error) {
-    console.error("dFn Error:", error);
-  }
+async function getInfo(ordId){
+      let res = await fetch(ordR + 'inscription/' + ordId);
+      let info = await res.json();
+      return info;
 }
+
 
 //// CSS
 
@@ -363,13 +312,14 @@ const style = D.head.appendChild(document.createElement('style'))
 style.textContent = `
 
   html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background: #000;
   }
 
   body {
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
