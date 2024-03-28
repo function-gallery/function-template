@@ -209,13 +209,15 @@ Once you've inscribed your file use:
 dFn(ordId) to load in an onchain gzipped script, or
 dFn('my_local_script.js', 1) to test a local compressed script
 
+
 ## TESTNET
 
 You can now test your files on Bitcoin testnet. You can get testnet BTC here: [https://bitcoinfaucet.uo1.net/](https://bitcoinfaucet.uo1.net/)
 
-See index_testnet.html 
+Easiest way to inscribe on the testnet is [https://testnet.unisat.io/inscribe](https://testnet.unisat.io/inscribe)
 
-Simple add ?&test=1 to your url to switch to testnet urls
+Simply add ?&test=1 to your url to switch to testnet urls
+See index_testnet.html for example
 
 - testnet seed
   b474498d1fab6e07be9543c3bdc8f4403fe871c9750bc887195ca57735c7159bi0
