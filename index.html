@@ -1,29 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Function</title>
 
-    <script>
-    // DON'T CHANGE THIS
-    Fn=(u,l)=>{D=document;dev=new URLSearchParams(location.search).get('dev');F=D.createElement('script');F.src=(dev&&!l?'https://ordinals.com/content/':'')+u; return new Promise((y, n) => {F.onload = y;F.onerror = n;D.head.appendChild(F);})};
+<head>
+  <meta charset="UTF-8">
+  <title>Function</title>
 
-    // use: Fn(url, local) to load a script
-    // use: dFn(url, local) to load a gzipped script
 
-    <!-- p5.js -->
-    Fn('d2a720f067c4811aa66c327d73ae16e0888de2bed77fc086635bcd9f1786159bi0')
-    //Fn('p5_ord.js', 1)
-    <!-- seed -->
-    // .then(() => Fn('seed.js', 1))
-    .then(() => Fn('769a54f380f3d70bd865fd2b204d8b1502769ea739139978b128cd995208d058i0'))
-    <!-- sketch -->
-    .then(() => Fn('sketch.js', 1))
-    //.then(() => dFn('orinalId')) // compressed_sketch.min.js
+  <!--
+// mainnet seed
+// 39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0
+// mainnet fflate
+// f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0
+// mainnet p5
+// cc5cf94da24c1f6f0d435ccca78c24e98ca30adb1f3b7c81b9ab28ceb6cb628fi0
+-->
 
-    </script>
-  </head>
+  <!--
+// testnet seed
+// b474498d1fab6e07be9543c3bdc8f4403fe871c9750bc887195ca57735c7159bi0
+// testnet fflate
+// 657973995aa2a47c3fe02debb22405dadf6b49148d97027627bced89a73f408fi0
+// testnet p5
+// d1fc9ee2d1877927643978045b80078d8e5b2dd49e04d309f5453c8dc4ac269fi0
+-->
 
-<body></body>
+  <script>
+    let Fn = (uu, n) => {
+      return new Promise((Y, N) => {
+        let US = new URLSearchParams(window.location.search)
+        let DV = US.get('dev')
+        let T = US.get('test')
+        let s = document.createElement('script');
+        let url = T ? 'https://testnet.ordinals.com' : 'https://ordinals.com'
+        s.src = (DV && !n) ? url + '/content/' + uu : uu;
+        s.onload = Y;
+        document.head.appendChild(s);
+      });
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <script>
+    Fn('39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0?p5') // mainnet seed
+    //Fn('seed.js?p5', 1)
+    // .then(
+    // () => dFn('c49f28a5c9e67efb85d44b9ee12efa2839b0251bad14efc5e6c32406505e259ci0') // chroma.min.js
+    // )
+      .then(
+        () => dFn('sketch.js.gz', 1) // use dFn() for gzipped files and Fn() for uncompressed files
+      )
+  </script>
+
+</body>
 
 </html>
