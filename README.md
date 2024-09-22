@@ -2,14 +2,18 @@
 Template for Generative Art Inscriptions on Bitcoin
 
 ##Quiclinks:
+
+Mainnet:
 P5.js: [cc5cf94da24c1f6f0d435ccca78c24e98ca30adb1f3b7c81b9ab28ceb6cb628fi0](https://ordinals.com/content/cc5cf94da24c1f6f0d435ccca78c24e98ca30adb1f3b7c81b9ab28ceb6cb628fi0)
 FFlate: [f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0](https://ordinals.com/content/f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0)
 Seed: [39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0](https://ordinals.com/content/39897b3d1ba0549db6c5fcb809e6917d88f39acad6cb471cd9d53a5fe667940ci0)
 ChromaJS: [c49f28a5c9e67efb85d44b9ee12efa2839b0251bad14efc5e6c32406505e259ci0](c49f28a5c9e67efb85d44b9ee12efa2839b0251bad14efc5e6c32406505e259ci0)
 
-- testnet seed b474498d1fab6e07be9543c3bdc8f4403fe871c9750bc887195ca57735c7159bi0
+Mainnet:
+- testnet seed bb3fd7ed87b979f0591ee596ffe12ac359bde4d097e0cfcac4ccd5c0a2802997i0
 - testnet fflate 657973995aa2a47c3fe02debb22405dadf6b49148d97027627bced89a73f408fi0
 - testnet p5 d1fc9ee2d1877927643978045b80078d8e5b2dd49e04d309f5453c8dc4ac269fi0
+- testnet chromaJS: 2afdc16e6e3955874be44f2d01709d268f718e0a912c595177b80a2b5b9c2969i0
 
 
 ## Abstract
